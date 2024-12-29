@@ -1,20 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+
 import MenuItem from "../Components/MenuItem";
 import SectionTitle from "../Components/SectionTitle";
+import useMenu from "../Pages/Shared/Custom/useMenu";
 
 function PopularMenu() {
-
-    const [menu , setMenu] = useState([])
-    useEffect(()=> {
-        fetchData()
-    } , [])
-
-    const fetchData = async() => {
-        const {data} = await axios.get('/menu.json') 
-        const populer = data.filter(item => item.category === 'popular')
-        setMenu(populer)
-    }
+    const {menu} = useMenu()
+    const populer = menu.filter(item => item.category === 'popular' )
+    console.log(populer)
   return (
     <section>
       <section>
@@ -27,7 +20,7 @@ function PopularMenu() {
 
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-8">
         {
-            menu.map(item => <MenuItem key={item._id} item={item}/> )
+            populer.map(item => <MenuItem key={item._id} item={item}/> )
         }
     </section>
     </section>

@@ -5,10 +5,14 @@ import Category from './Category'
 import Featured from './Featured'
 import PopularMenu from './PopularMenu'
 import Recomended from './Recomended'
+import { Helmet } from 'react-helmet-async'
 
 function Home() {
   return (
     <div>
+      <Helmet>
+        <title>Home | Black Castel</title>
+      </Helmet>
   <Banner/>
  <div className='my-16'>
  <Category/>

@@ -8,6 +8,7 @@ export default {
     extend: {
       backgroundImage: {
         'featuredBg': "url('/src/assets/home/featured.jpg')",
+        'coverBg': "url('/src/assets/menu/banner3.jpg')",
       },
     },
   },
