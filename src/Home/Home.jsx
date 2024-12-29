@@ -1,4 +1,5 @@
 import React from 'react'
+import Reviews from '../Components/Reviews'
 import Banner from './Banner'
 import Category from './Category'
 import Featured from './Featured'
@@ -20,6 +21,9 @@ function Home() {
  </div>
  <div className='my-16'>
  <Recomended/>
+ </div>
+ <div className='my-16'>
+ <Reviews/>
  </div>
     </div>
   )
