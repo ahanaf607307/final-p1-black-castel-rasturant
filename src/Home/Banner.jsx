@@ -12,7 +12,7 @@ import img6 from "../assets/home/06.png";
 function Banner() {
   return (
     <>
-      <Carousel autoPlay='interval'>
+      <Carousel autoPlay='interval' infiniteLoop='infiniteLoop'>
         <div>
           <img src={img1} />
         </div>

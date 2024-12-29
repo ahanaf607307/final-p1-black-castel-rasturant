@@ -4,7 +4,7 @@ function Navbar() {
     
   return (
     <>
-      <div className="navbar bg-white/40 fixed z-50 max-w-7xl mx-auto">
+      <div className="navbar bg-black/40 text-white fixed z-50 max-w-7xl mx-auto">
   <div className="navbar-start">
   
     <a className="btn btn-ghost text-xl">Black Castel</a>
