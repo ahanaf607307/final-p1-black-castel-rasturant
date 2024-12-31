@@ -2,11 +2,11 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { FaQuoteLeft } from "react-icons/fa";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionTitle from "./SectionTitle";
-import { FaQuoteLeft } from "react-icons/fa";
 function Reviews() {
   const [reviews, setReview] = useState([]);
   useEffect(() => {
@@ -14,7 +14,7 @@ function Reviews() {
   }, []);
 
   const fetchData = async () => {
-    const { data } = await axios.get("/reviews.json");
+    const { data } = await axios.get("http://localhost:5000/reviews");
     setReview(data);
   };
   return (
@@ -38,7 +38,7 @@ function Reviews() {
           className="mySwiper"
         >
           {reviews.map((review) => (
-            <SwiperSlide className="pb-10 flex flex-col justify-center items-center text-center">
+            <SwiperSlide key={review?._id} className="pb-10 flex flex-col justify-center items-center text-center">
               <section className="text-center flex flex-col justify-center items-center">
               <Rating style={{ maxWidth: 180 }} value={review.rating}  readOnly />
               </section>

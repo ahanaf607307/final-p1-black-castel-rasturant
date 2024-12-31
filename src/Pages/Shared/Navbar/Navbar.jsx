@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
-    
+   
   return (
     <>
       <div className="navbar bg-black/40 text-white fixed z-50 max-w-7xl mx-auto">
@@ -12,8 +12,11 @@ function Navbar() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><NavLink to='./'>Home</NavLink></li>
+  <li><NavLink to='./'>Home</NavLink></li>
       <li><NavLink to='/menu'>Menu</NavLink></li>
+      <li><NavLink to='/order/salad'>Order</NavLink></li>
+      <li><NavLink to='/login'>Login</NavLink></li>
+      <li><NavLink to='/signup'>Signup</NavLink></li>
     </ul>
   </div>
   <div className="navbar-end">
@@ -39,6 +42,7 @@ function Navbar() {
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow absolute right-0">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Menu</NavLink></li>
+        <li><NavLink to='/order/salad'>Order</NavLink></li>
       </ul>
     </div>
   </div>

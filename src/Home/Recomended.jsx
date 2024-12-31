@@ -26,7 +26,7 @@ function Recomended() {
 
   <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-8">
       {
-          menu.map(item => <div className="card bg-base-100 w-96 shadow-xl">
+          menu.map(item => <div key={item?._id} className="card bg-base-100 w-96 shadow-xl">
             <figure className="px-10 pt-10">
               <img
                 src={item.image}
