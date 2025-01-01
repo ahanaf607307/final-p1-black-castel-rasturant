@@ -26,7 +26,7 @@ function Menu() {
       </Helmet>
       <section className="mb-10">
         <Cover
-          bannerHeignt={"h-[600px]"}
+          bannerHeignt={"h-[300px] md:h-[450px] lg:h-[600px]"}
           img={menuBg}
           headingColor={"text-white/80"}
           heading={"OUR MENU"}

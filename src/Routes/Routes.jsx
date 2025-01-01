@@ -3,8 +3,10 @@ import Home from "../Home/Home"
 import MainLayout from "../Main/MainLayout"
 import Menu from "../Pages/Menu/Menu"
 import Oder from "../Pages/OrderFood/Oder"
-import Signup from "../Firebase/Signup"
+// import Signup from "../Firebase/register"
 import Login from "../Firebase/Login"
+import PrivateRoute from "../Firebase/PrivateRoute"
+import SignupTwo from "../Firebase/SignupTwo"
 
 const routes = createBrowserRouter([
     {
@@ -21,15 +23,15 @@ const routes = createBrowserRouter([
             },
             {
                 path : "/order/:category",
-                element : <Oder/>
+                element :<PrivateRoute><Oder/></PrivateRoute>
             },
             {
                 path : "login",
                 element : <Login/>
             },
             {
-                path : "signup",
-                element : <Signup/>
+                path : "signuptwo",
+                element : <SignupTwo/>
             },
         ]
     },

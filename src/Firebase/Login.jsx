@@ -1,19 +1,25 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  LoadCanvasTemplate,
+  loadCaptchaEnginge,
+  validateCaptcha,
+} from "react-simple-captcha";
+import Swal from "sweetalert2";
 import loginImage from "../assets/others/authentication2.png";
 import { AuthContext } from "./AuthProvider";
 
 function Login() {
-    const {loginUser , setUser} = useContext(AuthContext)
-const [disabled , setDisabled] = useState(true)
-    const captchaRef = useRef(null)
-      // captcha useEffect
-      useEffect(() => {
-        loadCaptchaEnginge(6);
-      }, []);
+  const { loginUser, setUser } = useContext(AuthContext);
+  const [disabled, setDisabled] = useState(true);
+const  location = useLocation()
+  const navigate = useNavigate();
+  // captcha useEffect
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
-    //   login form handler
+  //   login form handler
   const handleLogin = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -22,27 +28,28 @@ const [disabled , setDisabled] = useState(true)
     const userDetails = { email, password };
     console.log(userDetails);
 
-    // firebase sign in user 
+    // firebase sign in user
 
-    loginUser(email , password)
-    .then(res => {
-        setUser(res.user)
-    })
-    .catch(error => {
-        console.log('error from Login --> ' , error)
-        alert('Login Faild')
-    })
+    loginUser(email, password)
+      .then((res) => {
+        setUser(res.user);
+        Swal.fire("Login successfull");
+        navigate(location?.state ? location.state : '/')
+      })
+      .catch((error) => {
+        console.log("error from Login --> ", error);
+        Swal.fire("Login faild");
+      });
   };
 
-  const handleCaptcha = ()=>{
-const cValue = captchaRef.current.value
-console.log(cValue)
-if(validateCaptcha(cValue)) {
-    setDisabled(false)
-}else{
-    setDisabled(true)
-}
-  }
+  const handleCaptcha = (e) => {
+    const cValue = e.target.value;
+    if (validateCaptcha(cValue)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
   return (
     <div className="grid lg:grid-cols-2  justify-center items-center  bg-loginBg bg-cover bg-center lg:px-1 xl:px-64 font-cardFont ">
       <div>
@@ -52,7 +59,10 @@ if(validateCaptcha(cValue)) {
         <h1 className="text-center font-semibold my-5  text-3xl">
           <span className="text-black">Login Now</span>
         </h1>
-        <form onSubmit={handleLogin} className="font-semibold text-gray-600">
+        <form
+          onSubmit={handleLogin}
+          className="font-semibold text-gray-600 cursor-pointer"
+        >
           <label className="form-control w-full ">
             <div className="label">
               <span className="label-text text-white">Email</span>
@@ -77,23 +87,24 @@ if(validateCaptcha(cValue)) {
               required
             />
           </label>
-         <div>
-         <label className="form-control w-full ">
-            <div className="label">
-              <LoadCanvasTemplate />
-            </div>
-            <input
-              type="text"
-              
-              name="captcha"
-              ref={captchaRef}
-              placeholder="Type Captcha Here"
-              className="input input-bordered w-full "
-              required
-            />
-          </label>
-          <button onClick={()=>handleCaptcha()} className="btn-outline btn-xl">Validate Captcha</button>
-         </div>
+          <div>
+            <label className="form-control w-full ">
+              <div className="label">
+                <LoadCanvasTemplate />
+              </div>
+              <input
+                type="text"
+                onBlur={handleCaptcha}
+                name="captcha"
+                placeholder="Type Captcha Here"
+                className="input input-bordered w-full "
+                required
+              />
+              <p className="text-orange-600 font-semibold text-sm mt-3 border-2 border-orange-500 px-3 hover:scale-105 duration-100 py-2 w-4/12 cursor-pointer rounded-xl">
+                Check Captcha
+              </p>
+            </label>
+          </div>
           <input
             type="submit"
             disabled={disabled}
@@ -108,7 +119,10 @@ if(validateCaptcha(cValue)) {
       </button> */}
         <h1 className="my-10">
           New User ?{" "}
-          <Link className="text-red-500 font-semibold underline" to="/signup">
+          <Link
+            className="text-red-500 font-semibold underline"
+            to="/signuptwo"
+          >
             Signup
           </Link>{" "}
         </h1>

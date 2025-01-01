@@ -27,7 +27,7 @@ function Reviews() {
           headingColor={"text-gray-500"}
         />
       </section>
-      <section className="border-2 border-gray-500 rounded-xl pt-10 px-20 my-5">
+      <section className="border-2 border-gray-500 rounded-xl pt-10 px-3 md:px-10 lg:px-20 my-5">
         <Swiper
           spaceBetween={30}
           pagination={{
@@ -43,12 +43,12 @@ function Reviews() {
               <Rating style={{ maxWidth: 180 }} value={review.rating}  readOnly />
               </section>
              <section className="flex flex-col justify-center items-center my-5">
-             <h1 className=" text-5xl font-bold"><FaQuoteLeft /></h1>
+             <h1 className=" text-3xl lg:text-5xl font-bold"><FaQuoteLeft /></h1>
              </section>
-              <h1 className="text-3xl font-semibold text-orange-600 my-2">
+              <h1 className="text-2xl lg:text-3xl font-semibold text-orange-600 my-2">
                 {review.name}
               </h1>
-              <p className="text-sm text-gray-500 px-20">{review.details}</p>
+              <p className="text-sm text-gray-500 px-2 md:px-10 lg:px-20">{review.details}</p>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -28,7 +28,7 @@ function Oder() {
         img={OrderImg}
         heading={"Order Now"}
         title={"Would you like to try a dish?"}
-        bannerHeignt={"h-[500px]"}
+        bannerHeignt={"h-[300px] md:h-[450px] lg:h-[500px]"}
         headingColor={"text-orange-400"}
       />
       <section className="my-14">

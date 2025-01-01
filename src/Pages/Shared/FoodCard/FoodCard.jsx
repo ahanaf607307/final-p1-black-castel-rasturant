@@ -2,7 +2,7 @@ import React from 'react'
 
 function FoodCard({item}) {
   return (
-    <div className="card bg-base-100 w-96 shadow-xl">
+    <div className="card bg-base-100 w-full shadow-xl">
             <figure className="px-10 pt-10 relative">
               <img
                 src={item.image}
