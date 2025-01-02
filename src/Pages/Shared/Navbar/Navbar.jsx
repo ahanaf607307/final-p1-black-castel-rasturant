@@ -1,10 +1,12 @@
 import React from 'react'
+import { IoCartSharp } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import useAuth from '../../../Firebase/useAuth'
+import useCart from '../Custom/useCart'
 
 function Navbar() {
    const {logOutUser , user} = useAuth()
-console.log(user?.displayName)
+const [cart] = useCart()
    const handleLogout = () => {
     logOutUser()
     .then(() => {
@@ -25,8 +27,15 @@ console.log(user?.displayName)
     <ul className="menu menu-horizontal px-1">
   <li><NavLink to='./'>Home</NavLink></li>
       <li><NavLink to='/menu'>Menu</NavLink></li>
-      <li>{user ? <NavLink to='/order/salad'>Order</NavLink> : ''}</li>
-      
+      <li><NavLink to='/order/salad'>Order</NavLink></li>
+      <li>
+        <NavLink to='/dashboard/cart'>
+        <div className="indicator">
+  <span className="indicator-item badge badge-primary">+{cart?.length ? cart?.length : '0'}</span>
+  <IoCartSharp className='text-2xl '/>
+</div>
+        </NavLink>
+      </li>
     </ul>
   </div>
   <div className="navbar-end">
@@ -83,7 +92,7 @@ console.log(user?.displayName)
         className="menu menu-sm dropdown-content bg-orange-500 rounded-box z-[1] mt-3 w-52 p-2 shadow absolute right-0">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Menu</NavLink></li>
-        <li>{user ? <NavLink to='/order/salad'>Order</NavLink> : ''}</li>
+        <li><NavLink to='/order/salad'>Order</NavLink> </li>
         <li className='flex lg:hidden'>
       {
         user ? <button className='btn' onClick={handleLogout}>Logout</button> : <div className='flex gap-x-3 items-center'>

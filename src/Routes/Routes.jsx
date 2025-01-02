@@ -4,8 +4,9 @@ import MainLayout from "../Main/MainLayout"
 import Menu from "../Pages/Menu/Menu"
 import Oder from "../Pages/OrderFood/Oder"
 // import Signup from "../Firebase/register"
+import Cart from "../Dashboard/Cart/Cart"
+import Dashboard from "../Dashboard/Dashboard"
 import Login from "../Firebase/Login"
-import PrivateRoute from "../Firebase/PrivateRoute"
 import SignupTwo from "../Firebase/SignupTwo"
 
 const routes = createBrowserRouter([
@@ -23,7 +24,7 @@ const routes = createBrowserRouter([
             },
             {
                 path : "/order/:category",
-                element :<PrivateRoute><Oder/></PrivateRoute>
+                element :<Oder/>
             },
             {
                 path : "login",
@@ -36,7 +37,14 @@ const routes = createBrowserRouter([
         ]
     },
     {
-        
+      path : 'dashboard',
+      element : <Dashboard/>,
+      children : [
+        {
+            path : 'cart',
+            element : <Cart/>
+        }
+      ]  
     }
 ])
 
