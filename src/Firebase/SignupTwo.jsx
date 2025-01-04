@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import signUpImage from '../assets/others/authentication1.png'
+import useAxiosPublic from '../Pages/Shared/Custom/useAxiosPublic'
+import GoogleLogin from '../Pages/Shared/GoogleLogin/GoogleLogin'
 import useAuth from './useAuth'
 
 function SignupTwo() {
+  const axiosPublic = useAxiosPublic()
 const navigate = useNavigate()
     const { setUser , createUser , updateUserProfile} = useAuth()
 
@@ -18,14 +21,38 @@ const navigate = useNavigate()
         formState: { errors },
       } = useForm()
       const onSubmit = (data) => {
-        console.log(data)
-        const email = data.name
+
+        const name = data.name
         const photoUrl = data.photoUrl
         createUser(data.email , data.password)
         .then(res => {
-       updateUserProfile(email , photoUrl)
-            .then(res => {
-               
+       updateUserProfile(name , photoUrl)
+            .then(() => {
+               const userInfo = {
+                name : data.name,
+                email : data.email
+               }
+               axiosPublic.post ('/users' , userInfo)
+               .then(res => {
+                if(res.data.insertedId) {
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: "Signed in successfully"
+                  });
+                }
+               })
+
             })
             .catch(error => {
                 console.log('error from update profile ->' , error)
@@ -34,21 +61,7 @@ const navigate = useNavigate()
                 ...res.user,
               })
             console.log(res.user)
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.onmouseenter = Swal.stopTimer;
-                  toast.onmouseleave = Swal.resumeTimer;
-                }
-              });
-              Toast.fire({
-                icon: "success",
-                title: "Signed in successfully"
-              });
+           
               navigate('/')
         })
         reset()
@@ -135,6 +148,7 @@ const navigate = useNavigate()
     />
   </form>
   {/* <h1 className='my-2 text-red-600 mx-auto text-lg'>{errorInvalid} </h1> */}
+  <GoogleLogin/>
   <h1 className="my-10 font-semibold text-xl">
     Already Have an account  ?{" "}
     <Link className="text-red-600 underline" to="/login">

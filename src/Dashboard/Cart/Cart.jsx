@@ -1,10 +1,44 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { FaTrash } from 'react-icons/fa'
+import Swal from 'sweetalert2'
+import useAxiosSecure from '../../Pages/Shared/Custom/useAxiosSecure'
 import useCart from '../../Pages/Shared/Custom/useCart'
 
 function Cart() {
-    const [cart] = useCart()
+    const [cart , refetch] = useCart()
+    const axiosSecure = useAxiosSecure()
  const totalPrice = cart.reduce((sum , item) => sum + item.price , 0)
+ const handleDeleteItem = (id) => {
+  console.log(id)
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
+
+axiosSecure.delete(`/carts/${id}`) 
+.then(res => {
+  if(res.data.deletedCount > 0) {
+    refetch()
+    Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+  }
+})
+.catch(err => {
+  console.log('error from deleted count component cart' , err )
+})
+    }
+  });
+ }
   return (
     <div>
     <div className='flex justify-between items-center px-5'>
@@ -34,7 +68,9 @@ function Cart() {
             </td>
         <td>{items?.name}</td>
         <td>{items?.price}</td>
-        <td><Link to={`/details/${items?.itemId}`}>Details</Link></td>
+        <td><button className='btn btn-md ' onClick={()=>handleDeleteItem(items?._id)}>
+          <FaTrash className='text-red-600'></FaTrash>
+          </button></td>
              </tr>)}
       
       

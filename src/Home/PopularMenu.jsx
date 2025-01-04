@@ -7,7 +7,7 @@ import useMenu from "../Pages/Shared/Custom/useMenu";
 function PopularMenu() {
     const {menu} = useMenu()
     const populer = menu.filter(item => item.category === 'popular' )
-    console.log(populer)
+
   return (
     <section>
       <section>

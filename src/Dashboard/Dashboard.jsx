@@ -1,14 +1,16 @@
 import React from "react";
 import { BsCartCheckFill } from "react-icons/bs";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUsers, FaUtensils } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdContacts, MdHome, MdOutlineLibraryAddCheck, MdPayments, MdRateReview } from "react-icons/md";
+import { MdBookmarkAdd, MdContacts, MdHome, MdMenu, MdOutlineLibraryAddCheck, MdPayments, MdRateReview } from "react-icons/md";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
 
 
 function Dashboard() {
+
+  const isAdmin = true
 
   return (
     <div className="">
@@ -17,7 +19,44 @@ function Dashboard() {
         <div className="w-64 flex min-h-screen bg-orange-600">
           <ul className="menu py-5 px-2 text-white/80">
             
+            {
+              isAdmin ? <>
+              <li>
+              <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/adminHome">
+                <MdHome /> Admin Home
+              </NavLink>
+            </li>
             <li>
+              <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/addItem">
+              <FaUtensils /> Add Items
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/manageItem">
+              <MdMenu /> Manage Items
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="flex items-center gap-x-2 text-xl"
+                to="/dashboard/manageBooking"
+              >
+                <MdBookmarkAdd /> Manage Bookings
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="flex items-center gap-x-2 text-xl"
+                to="/dashboard/allUsers"
+              >
+               <FaUsers />All Users
+              </NavLink>
+            </li>
+            
+              </> : <>
+              
+              <li>
               <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/userHome">
                 <MdHome /> User Home
               </NavLink>
@@ -57,6 +96,8 @@ function Dashboard() {
                 <SlCalender /> My Booking
               </NavLink>
             </li>
+              </>
+            }
             <div className="divider"></div>
             <li>
               <NavLink className="flex items-center gap-x-2 text-xl" to="/">
@@ -74,7 +115,7 @@ function Dashboard() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="flex items-center gap-x-2 text-xl" to="/">
+              <NavLink className="flex items-center gap-x-2 text-xl" to="/order/contact">
               <MdContacts /> Contact
               </NavLink>
             </li>

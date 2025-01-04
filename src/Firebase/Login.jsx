@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { IoLogoGoogleplus } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LoadCanvasTemplate,
@@ -8,9 +9,10 @@ import {
 import Swal from "sweetalert2";
 import loginImage from "../assets/others/authentication2.png";
 import { AuthContext } from "./AuthProvider";
+import GoogleLogin from "../Pages/Shared/GoogleLogin/GoogleLogin";
 
 function Login() {
-  const { loginUser, setUser } = useContext(AuthContext);
+  const { loginUser, setUser   } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
 const  location = useLocation()
 
@@ -42,7 +44,7 @@ const  location = useLocation()
         Swal.fire("Login faild");
       });
   };
-
+ 
   const handleCaptcha = (e) => {
     const cValue = e.target.value;
     if (validateCaptcha(cValue)) {
@@ -114,10 +116,7 @@ const  location = useLocation()
           />
         </form>
         {/* <h1 className="my-3 text-red-600 mx-auto text-lg">{errorInvalid} </h1> */}
-        {/* <button onClick={handleGoogleLogin} className="btn mt-5  bg-[#6dbd22de]">
-        <IoLogoGoogleplus className="text-[#f5da3f] text-xl" /> Login With
-        Google
-      </button> */}
+      <GoogleLogin/>
         <h1 className="my-10">
           New User ?{" "}
           <Link
