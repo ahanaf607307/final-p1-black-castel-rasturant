@@ -6,11 +6,13 @@ import { MdBookmarkAdd, MdContacts, MdHome, MdMenu, MdOutlineLibraryAddCheck, Md
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Pages/Shared/Custom/useAdmin";
 
 
 function Dashboard() {
 
-  const isAdmin = true
+  const [isAdmin] = useAdmin()
+  // const isAdmin = true
 
   return (
     <div className="">

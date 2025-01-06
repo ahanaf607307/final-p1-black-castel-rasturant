@@ -7,10 +7,10 @@ function MainLayout() {
   const location = useLocation()
   const isLoginSignup = location.pathname.includes('login' ) || location.pathname.includes('signup' )  
   return (
-    <div><div >
+    <div ><div >
         {isLoginSignup ||<Navbar/>}
     </div>
-     <div >
+     <div>
      <Outlet/>
      </div>
       <div>
