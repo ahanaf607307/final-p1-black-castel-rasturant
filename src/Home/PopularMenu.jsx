@@ -5,7 +5,7 @@ import SectionTitle from "../Components/SectionTitle";
 import useMenu from "../Pages/Shared/Custom/useMenu";
 
 function PopularMenu() {
-    const {menu} = useMenu()
+    const [menu] = useMenu()
     const populer = menu.filter(item => item.category === 'popular' )
 
   return (

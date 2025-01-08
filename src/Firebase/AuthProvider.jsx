@@ -51,7 +51,7 @@ const logOutUser = () => {
     if(currentUser.email) {
       setUser(currentUser)
       await axiosPublic.post('/jwt' , {email : currentUser.email},{withCredentials : true})
-
+      setLoading(false);
     }
     else{
       setUser(currentUser)

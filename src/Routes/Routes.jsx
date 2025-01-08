@@ -4,12 +4,16 @@ import MainLayout from "../Main/MainLayout"
 import Menu from "../Pages/Menu/Menu"
 import Oder from "../Pages/OrderFood/Oder"
 // import Signup from "../Firebase/register"
+import AddItem from "../Dashboard/AddItem/AddItem"
 import AllUsers from "../Dashboard/AllUsers/AllUsers"
 import Cart from "../Dashboard/Cart/Cart"
 import Dashboard from "../Dashboard/Dashboard"
+import ManageItem from "../Dashboard/ManageItem/ManageItem"
+import UpdateItem from "../Dashboard/ManageItem/UpdateItem"
 import Login from "../Firebase/Login"
 import PrivateRoute from "../Firebase/PrivateRoute"
 import SignupTwo from "../Firebase/SignupTwo"
+import AdminRoute from "../Pages/Shared/Custom/AdminRoute"
 
 const routes = createBrowserRouter([
     {
@@ -42,13 +46,30 @@ const routes = createBrowserRouter([
       path : 'dashboard',
       element : <PrivateRoute><Dashboard/></PrivateRoute>,
       children : [
+
+        // normal users
         {
             path : 'cart',
             element : <Cart/>
         },
+
+        // Admin only
         {
             path : 'allUsers',
-            element : <AllUsers/>
+            element : <AdminRoute><AllUsers/></AdminRoute>
+        },
+        {
+            path : 'addItem',
+            element : <AdminRoute><AddItem/></AdminRoute>
+        },
+        {
+            path : 'manageItem',
+            element : <AdminRoute><ManageItem/></AdminRoute>
+        },
+        {
+            path : 'updateItem/:id',
+            element : <AdminRoute><UpdateItem/></AdminRoute>,
+            loader : ({params}) => fetch(`${import.meta.env.VITE_URL}/updateItem/${params.id}`)
         },
       ]  
     }

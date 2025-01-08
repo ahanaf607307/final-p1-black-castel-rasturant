@@ -1,21 +1,20 @@
-import React from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
-import useAuth from '../../../Firebase/useAuth'
-import useAdmin from './useAdmin'
+import React from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../../../Firebase/useAuth";
+import useAdmin from "../Custom/useAdmin";
 
-function AdminRoute() {
-    const {user , loading} = useAuth()
-    const location = useLocation()
-    const [isAdmin , isAdminLoading] = useAdmin()
+function AdminRoute({ children }) {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  const [isAdmin, isAdminLoading] = useAdmin();
+  if (loading || isAdminLoading) {
+    return <h1>Loading ...</h1>;
+  }
 
-    if(user && isAdmin) {
-        return children
-    }
-
-    if(loading || isAdminLoading) {
-        return <h1 className='text-7xl text-center font-bold my-20'>Loading ...</h1>
-    }
-  return <Navigate state={location.pathname} to='/login'></Navigate>
+  if (user && isAdmin) {
+    return children;
+  }
+  return <Navigate state={location.pathname} to="/"></Navigate>;
 }
 
-export default AdminRoute
+export default AdminRoute;

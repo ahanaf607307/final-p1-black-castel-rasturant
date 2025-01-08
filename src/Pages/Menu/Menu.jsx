@@ -12,7 +12,7 @@ import Cover from "../Shared/Cover/Cover";
 import useMenu from "../Shared/Custom/useMenu";
 import MenuCategory from "./MenuCategory";
 function Menu() {
-  const { menu } = useMenu();
+  const [menu]   = useMenu();
   const offered = menu.filter((item) => item.category === "offered");
   const dessert = menu.filter((item) => item.category === "dessert");
   const pizza = menu.filter((item) => item.category === "pizza");
