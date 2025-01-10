@@ -69,7 +69,7 @@ function Dashboard() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/payment">
+              <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/paymentHistory">
               <MdPayments /> Payment Histroy
               </NavLink>
             </li>

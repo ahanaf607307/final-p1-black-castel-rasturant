@@ -33,7 +33,7 @@ function AddItem() {
     const itemInfo = {
       name : data.name , 
       category : data.category,
-      price : data.price,
+      price : parseFloat(data.price),
       recipe : data.recipe,
       image : res.data.data.display_url
 

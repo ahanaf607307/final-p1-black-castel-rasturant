@@ -14,6 +14,8 @@ import Login from "../Firebase/Login"
 import PrivateRoute from "../Firebase/PrivateRoute"
 import SignupTwo from "../Firebase/SignupTwo"
 import AdminRoute from "../Pages/Shared/Custom/AdminRoute"
+import Payment from "../Dashboard/Payment/Payment"
+import PaymentHistory from "../Dashboard/Payment/PaymentHistory"
 
 const routes = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ const routes = createBrowserRouter([
         {
             path : 'cart',
             element : <Cart/>
+        },
+        {
+            path : 'payment',
+            element : <Payment/>
+        },
+        {
+            path : 'paymentHistory',
+            element : <PaymentHistory/>
         },
 
         // Admin only

@@ -1,11 +1,13 @@
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../Pages/Shared/Custom/useAxiosSecure'
 import useCart from '../../Pages/Shared/Custom/useCart'
 
 function Cart() {
     const [cart , refetch] = useCart()
+    console.log(cart)
     const axiosSecure = useAxiosSecure()
  const totalPrice = cart.reduce((sum , item) => sum + item.price , 0)
  const handleDeleteItem = (id) => {
@@ -44,7 +46,9 @@ axiosSecure.delete(`/carts/${id}`)
     <div className='flex justify-between items-center px-5'>
     <h1 className='text-xl font-bold'>Total Product : {cart.length}</h1>
     <h1 className='text-xl font-bold'>Total Price : {totalPrice}</h1>
-    <button className='btn bg-orange-500'>Pay Now</button>
+{
+  cart.length ?    <Link to='/dashboard/payment'> <button className='btn bg-orange-500'>Pay Now</button></Link> :  <button disabled className='btn bg-orange-500'>Pay Now</button>
+}
     </div>
     <div className="overflow-x-auto">
   <table className="table">
