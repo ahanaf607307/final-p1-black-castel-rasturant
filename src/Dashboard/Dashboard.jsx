@@ -2,7 +2,7 @@ import React from "react";
 import { BsCartCheckFill } from "react-icons/bs";
 import { FaHome, FaUsers, FaUtensils } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdBookmarkAdd, MdContacts, MdHome, MdMenu, MdOutlineLibraryAddCheck, MdPayments, MdRateReview } from "react-icons/md";
+import { MdContacts, MdHome, MdMenu, MdOutlineLibraryAddCheck, MdPayments, MdRateReview } from "react-icons/md";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
@@ -20,7 +20,7 @@ function Dashboard() {
       <div className="flex  gap-x-5 ">
         <div className="w-64 flex min-h-screen bg-orange-600">
           <ul className="menu py-5 px-2 text-white/80">
-            
+            {/* admin  */}
             {
               isAdmin ? <>
               <li>
@@ -39,14 +39,14 @@ function Dashboard() {
               </NavLink>
             </li>
 
-            <li>
+            {/* <li>
               <NavLink
                 className="flex items-center gap-x-2 text-xl"
-                to="/dashboard/manageBooking"
+                to="/dashboard"
               >
                 <MdBookmarkAdd /> Manage Bookings
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 className="flex items-center gap-x-2 text-xl"
@@ -57,7 +57,7 @@ function Dashboard() {
             </li>
             
               </> : <>
-              
+              {/* user */}
               <li>
               <NavLink className="flex items-center gap-x-2 text-xl" to="/dashboard/userHome">
                 <MdHome /> User Home

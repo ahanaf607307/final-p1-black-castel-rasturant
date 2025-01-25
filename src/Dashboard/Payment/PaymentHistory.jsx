@@ -3,23 +3,17 @@ import React from "react";
 import SectionTitle from "../../Components/SectionTitle";
 import useAuth from "../../Firebase/useAuth";
 import useAxiosSecure from "../../Pages/Shared/Custom/useAxiosSecure";
+import useCart from "../../Pages/Shared/Custom/useCart";
 
 function PaymentHistory() {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-//   const [history, setHistory] = useState([]);
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-//   const fetchData = async () => {
-//     const { data } = await axiosSecure.get(`/payments/${user.email}`);
-//     setHistory(data);
-//   };
 
 
-const {data : history  = []} = useQuery({
+
+
+const {refetch , data : history  = []} = useQuery({
     queryKey : ['history' , user?.email],
     queryFn : async () => {
         const res = await axiosSecure.get(`/payments/${user.email}`)

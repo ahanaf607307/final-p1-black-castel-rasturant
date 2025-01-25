@@ -7,9 +7,13 @@ import useAxiosSecure from "../../Pages/Shared/Custom/useAxiosSecure";
 function AllUsers() {
   const axiosSecure = useAxiosSecure();
   const { data : users = [] , refetch } = useQuery({
-    queryKey: ["user"],
+    queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get("/users" , {
+        headers : {
+authorization : `Bearer ${localStorage.getItem('access-token')}`
+        }
+      });
       return res.data;
     },
   });

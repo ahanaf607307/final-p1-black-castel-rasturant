@@ -2,10 +2,12 @@ import React from 'react'
 import { IoCartSharp } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import useAuth from '../../../Firebase/useAuth'
+import useAdmin from '../Custom/useAdmin'
 import useCart from '../Custom/useCart'
 
 function Navbar() {
    const {logOutUser , user} = useAuth()
+   const [isAdmin]= useAdmin()
 const [cart] = useCart()
    const handleLogout = () => {
     logOutUser()
@@ -36,6 +38,16 @@ const [cart] = useCart()
 </div>
         </NavLink>
       </li>
+      {
+        user && isAdmin && <li>
+          <NavLink to='/dashboard/adminHome'>Admin Home</NavLink>
+        </li>
+      }
+      {
+        user && <li>
+          <NavLink to='/dashboard/userHome'>User Home</NavLink>
+        </li>
+      }
     </ul>
   </div>
   <div className="navbar-end">

@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../Pages/Shared/Custom/useAxiosSecure'
 import useCart from '../../Pages/Shared/Custom/useCart'
+import useAxiosPublic from '../../Pages/Shared/Custom/useAxiosPublic'
 
 function Cart() {
     const [cart , refetch] = useCart()
     console.log(cart)
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
  const totalPrice = cart.reduce((sum , item) => sum + item.price , 0)
  const handleDeleteItem = (id) => {
   console.log(id)

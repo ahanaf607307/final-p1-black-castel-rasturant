@@ -8,14 +8,16 @@ import AddItem from "../Dashboard/AddItem/AddItem"
 import AllUsers from "../Dashboard/AllUsers/AllUsers"
 import Cart from "../Dashboard/Cart/Cart"
 import Dashboard from "../Dashboard/Dashboard"
+import AdminHome from "../Dashboard/DashboardHome/AdminHome"
+import UserHome from "../Dashboard/DashboardHome/UserHome"
 import ManageItem from "../Dashboard/ManageItem/ManageItem"
 import UpdateItem from "../Dashboard/ManageItem/UpdateItem"
+import Payment from "../Dashboard/Payment/Payment"
+import PaymentHistory from "../Dashboard/Payment/PaymentHistory"
 import Login from "../Firebase/Login"
 import PrivateRoute from "../Firebase/PrivateRoute"
 import SignupTwo from "../Firebase/SignupTwo"
 import AdminRoute from "../Pages/Shared/Custom/AdminRoute"
-import Payment from "../Dashboard/Payment/Payment"
-import PaymentHistory from "../Dashboard/Payment/PaymentHistory"
 
 const routes = createBrowserRouter([
     {
@@ -51,6 +53,10 @@ const routes = createBrowserRouter([
 
         // normal users
         {
+            path : 'userHome' , 
+            element : <UserHome/>
+        },
+        {
             path : 'cart',
             element : <Cart/>
         },
@@ -64,6 +70,10 @@ const routes = createBrowserRouter([
         },
 
         // Admin only
+        {
+            path : 'adminHome',
+            element : <AdminRoute><AdminHome/></AdminRoute>
+        },
         {
             path : 'allUsers',
             element : <AdminRoute><AllUsers/></AdminRoute>
